@@ -1,13 +1,31 @@
-import React, { Component} from 'react'
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 import AssetMap from '../config/AssetMap'
 
-export default class LocationButton extends React.Component {
+export default class LocationButton extends Component {
+
+  static defaultProps = {
+    icon: 'home',
+    onPress: () => {},
+  }
 
   render() {
-    return null
+    const {onPress, icon} = this.props
+
+    return (
+      <TouchableOpacity
+        style={styles.container}
+        onPress={onPress}
+        activeOpacity={0.5}
+      >
+        <Image
+          style={styles.image}
+          source={AssetMap[icon]}
+        />
+      </TouchableOpacity>
+    )
   }
 }
 
